@@ -1,48 +1,230 @@
-/* ==========================================
-   🎧 上下のノード（共通設定）
-   ========================================== */
-.node-row {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  
-  /* ▼ ここが重要：絶対に横並びにして、折り返させない ▼ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background-color: #fff0f5;
+  color: #333;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap; 
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  
-  /* ▼ 背景の線と合わない場合は、この「5%」の数値を微調整してください ▼ */
-  padding: 0 5%;
-  z-index: 2;
+  align-items: center;
 }
 
-/* ==========================================
-   🎧 上のヘッドホン置き場
-   ========================================== */
-#start-node-container {
-  /* 背景の線の高さに合わせて調整してください */
-  top: 60%; 
+.btn {
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 14px 24px;
+  cursor: pointer;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.btn-share { background-color: #000000; color: #ffffff; }
+.btn-reset { background-color: #ff69b4; color: #ffffff; }
+
+/* --- 🎮 ゲーム画面 --- */
+.amida-area {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-/* ==========================================
-   🎧 ヘッドホン1つあたりの枠
-   ========================================== */
-#start-node-container .node-item {
-  /* 5個が並べるように枠の幅は15%に抑えます（ここを50%などにすると縦に崩れます） */
-  width: 15%; 
+.lines-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ==========================================
-   🎧 ヘッドホンの画像
-   ========================================== */
-#start-node-container .node-item img {
+.bg-line-img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  /* ▼ ここで「見た目だけ」を2倍に大きくします ▼ */
-  transform: scale(2.0); 
+  height: 100%;
+  object-fit: cover; 
 }
+
+.node-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 5%;
+  z-index: 2;
+}
+
+/* 🎧 ヘッドホン */
+#start-node-container {
+  top: 12%; 
+}
+#start-node-container .node-item {
+  width: 17%; 
+}
+#start-node-container .node-item img {
+  transform: scale(1.05); 
+}
+
+/* 🏁 ゴールの文字（画像に合わせたカラフル・ポップな縦長ボックス！） */
+#goal-node-container {
+  bottom: 8%; /* 下の台に少し被るくらいに調整 */
+  z-index: 5;
+}
+
+.goal-text-box {
+  width: 16%;
+  height: 25%; /* ボックスを縦長にする */
+  background-color: rgba(255, 255, 255, 0.95) !important; /* 少し透ける白背景 */
+  
+  border-width: 4px !important; /* 太めの枠線 */
+  border-style: solid !important;
+  border-radius: 12px !important; /* 角を丸く */
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.15) !important;
+  
+  writing-mode: vertical-rl !important;
+  font-family: 'Cherry Bomb One', 'M PLUS Rounded 1c', sans-serif !important; /* ポップなフォントを適用 */
+  font-weight: normal !important;
+  font-size: 26px !important; /* 文字を大きく */
+  letter-spacing: 3px !important; /* 文字の間隔を少しあける */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: none !important;
+}
+
+/* ★それぞれの結果に合わせた5色の専用クラス★ */
+.color-pink { border-color: #ff3385 !important; color: #ff3385 !important; }
+.color-orange { border-color: #ff9500 !important; color: #ff9500 !important; }
+.color-green { border-color: #00c366 !important; color: #00c366 !important; }
+.color-blue { border-color: #3366ff !important; color: #3366ff !important; }
+.color-purple { border-color: #9933cc !important; color: #9933cc !important; }
+
+
+.node-item {
+  aspect-ratio: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.node-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
+}
+
+.runner {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* --- 🎁 結果画面 --- */
+.result-layout {
+  background-image: repeating-linear-gradient(45deg, #ffe4e1 25%, transparent 25%, transparent 75%, #ffe4e1 75%, #ffe4e1), repeating-linear-gradient(45deg, #ffe4e1 25%, #ffffff 25%, #ffffff 75%, #ffe4e1 75%, #ffe4e1);
+  background-position: 0 0, 15px 15px;
+  background-size: 30px 30px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; 
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.title-section { height: 12%; margin-top: 10px; }
+.result-title {
+  font-family: 'Cherry Bomb One', 'M PLUS Rounded 1c', sans-serif;
+  font-size: 26px;
+  color: #ff1493;
+  text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px #fff;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.text-section { height: 22%; padding: 0 15px; width: 100%; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.result-main-text {
+  font-family: 'Cherry Bomb One', 'M PLUS Rounded 1c', sans-serif;
+  font-size: 20px;
+  color: #ff1493;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 15px;
+  border-radius: 12px;
+  border: 2px solid #ff69b4;
+  width: 90%;
+  margin: 0 auto;
+}
+.result-sub-text {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #444;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 15px;
+  border-radius: 12px;
+  border: 2px solid #ffb6c1;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.chara-section { 
+  height: 41%; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.result-chara {
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.2));
+  transform: scale(0.66); 
+}
+
+.btn-section { 
+  height: 25%; 
+  padding-bottom: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px; 
+}
+.hidden { display: none !important; }
