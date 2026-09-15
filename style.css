@@ -133,11 +133,11 @@ body {
    ========================================== */
 
 #start-node-container {
-  top: 15%;
+  top: 30%;
 }
 
 #start-node-container .node-item {
-  width: 9%;
+  width: 18%;
 }
 
 #start-node-container .node-item img {
