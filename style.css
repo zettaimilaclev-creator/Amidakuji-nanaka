@@ -1,316 +1,152 @@
-* {
-  box-sizing: border-box;
+/* ========================================
+   ななかちゃんのあみだくじ
+   style.css
+======================================== */
+
+/* 全体 */
+body {
   margin: 0;
   padding: 0;
-}
-
-body {
+  background: #fff0f5;
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  background-color: #fff0f5;
-  color: #333;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-
-/* ==========================================
-   📱 アプリ全体
-   ========================================== */
-
-.app-container {
-  width: 100vw;
-  height: 100vh;
-
-  max-width: 480px;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-/* ==========================================
-   🔘 ボタン
-   ========================================== */
-
-.btn {
-  border: none;
-  border-radius: 25px;
-
-  font-weight: bold;
-  font-size: 16px;
-
-  padding: 14px 24px;
-
-  cursor: pointer;
-
-  width: 90%;
-  max-width: 320px;
-
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-}
-
-.btn-share {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.btn-reset {
-  background-color: #ff69b4;
-  color: #ffffff;
-}
-
-
-/* ==========================================
-   🎮 ゲーム画面
-   ========================================== */
-
-.amida-area {
-  flex: 1;
-
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+#game-container {
   position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
-
-.lines-wrapper {
+#game-board {
   position: relative;
-
   width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  aspect-ratio: 9 / 16;
+  background-image: url('./amida-lines-1.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-
-.bg-line-img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-/* ==========================================
-   🎧 上下のノード
-   ========================================== */
-
-.node-row {
-  position: absolute;
-
-  left: 0;
-  width: 100%;
-
-  display: flex;
-  justify-content: space-evenly;
-
-  padding: 0 5%;
-
-  z-index: 2;
-}
-
-
-/* ==========================================
-   🎧 上のヘッドホン
-   ★ 今までの約半分
-   ========================================== */
+/* ========================================
+   スタート位置
+======================================== */
 
 #start-node-container {
-  top: 15%;
-}
-
-#start-node-container .node-item {
-  width: 9%;
-}
-
-#start-node-container .node-item img {
-  transform: scale(1.1);
-}
-
-
-/* ==========================================
-   🏁 下の結果
-   ========================================== */
-
-#goal-node-container {
-  bottom: 8.5%;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   z-index: 5;
 }
 
+#start-node-container .node-item {
+  width: 18%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/* ==========================================
-   🏁 結果文字
-   ★ スマホ用に大きく
-   ★ 縦書き
-   ========================================== */
+#start-node-container .node-item img {
+  width: 100%;
+  height: auto;
+
+  /* ★ ヘッドホンを現在の約70％に縮小 */
+  transform: scale(0.875);
+
+  transform-origin: center center;
+}
+
+
+/* ========================================
+   ゴール位置
+======================================== */
+
+#goal-node-container {
+  position: absolute;
+  bottom: 8.5%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 5;
+}
 
 #goal-node-container .goal-text-box {
+  width: 17%;
+  height: 16%;
 
-  width: 16%;
-  height: 15%;
-
-  font-family:
-    'Cherry Bomb One',
-    'M PLUS Rounded 1c',
-    sans-serif;
-
-  /*
-     スマホでもしっかり読める大きさ
-  */
-  font-size: clamp(24px, 7vw, 34px);
-
+  font-family: 'Cherry Bomb One', 'M PLUS Rounded 1c', sans-serif;
+  font-size: clamp(26px, 8vw, 38px);
   font-weight: bold;
 
-  /*
-     縦書き
-  */
   writing-mode: vertical-rl;
   text-orientation: upright;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
 
   text-align: center;
-
   line-height: 1;
 
-  /*
-     白い背景で文字を見やすく
-  */
   background: rgba(255, 255, 255, 0.88);
 
   border-radius: 14px;
 
   padding: 6px 3px;
-
   box-sizing: border-box;
 
-  /*
-     白い縁取り
-  */
   text-shadow:
-    2px 2px 0 #ffffff,
-    -2px -2px 0 #ffffff,
-    2px -2px 0 #ffffff,
-    -2px 2px 0 #ffffff;
+    2px 2px 0 #fff,
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff;
 
-  /*
-     色が変わるようにする
-  */
   border: 3px solid currentColor;
 }
 
 
-/* ==========================================
-   🌈 5つの結果をそれぞれ色違い
-   ========================================== */
+/* ========================================
+   ゴール文字の色
+======================================== */
 
-/* ① 超あたり */
-#goal-node-container
-.goal-text-box:nth-child(1) {
-
+#goal-node-container .goal-text-box:nth-child(1) {
   color: #ff1493;
-
   border-color: #ff69b4;
 }
 
-
-/* ② 大当たり */
-#goal-node-container
-.goal-text-box:nth-child(2) {
-
+#goal-node-container .goal-text-box:nth-child(2) {
   color: #ff8c00;
-
   border-color: #ffad42;
 }
 
-
-/* ③ あたり */
-#goal-node-container
-.goal-text-box:nth-child(3) {
-
+#goal-node-container .goal-text-box:nth-child(3) {
   color: #20a84b;
-
   border-color: #61c77b;
 }
 
-
-/* ④ はずれ */
-#goal-node-container
-.goal-text-box:nth-child(4) {
-
+#goal-node-container .goal-text-box:nth-child(4) {
   color: #4169e1;
-
   border-color: #7d9cff;
 }
 
-
-/* ⑤ 大はずれ */
-#goal-node-container
-.goal-text-box:nth-child(5) {
-
+#goal-node-container .goal-text-box:nth-child(5) {
   color: #9b59b6;
-
   border-color: #c184d8;
 }
 
 
-/* ==========================================
-   🎧 キャラクターノード
-   ========================================== */
-
-.node-item {
-
-  aspect-ratio: 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-
-.node-item img {
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0px 2px 4px rgba(0, 0, 0, 0.2)
-    );
-}
-
-
-/* ==========================================
-   🎧 あみだを動くヘッドホン
-   ★ 45px → 55px
-   ========================================== */
+/* ========================================
+   動くヘッドホン
+======================================== */
 
 .runner {
-
   position: absolute;
 
   width: 55px;
@@ -321,302 +157,44 @@ body {
   background-position: center;
 
   z-index: 4;
-
   pointer-events: none;
 
-  /*
-     元の位置計算が45px基準なので、
-     55pxにした分だけ中央に補正
-  */
+  /* JS側の位置計算を維持したまま中央を調整 */
   transform: translate(-5px, -5px);
 }
 
 
-/* ==========================================
-   🎁 結果画面
-   ========================================== */
+/* ========================================
+   スマートフォン表示
+======================================== */
 
-.result-layout {
+@media (max-width: 600px) {
 
-  background-image:
-
-    repeating-linear-gradient(
-      45deg,
-      #ffe4e1 25%,
-      transparent 25%,
-      transparent 75%,
-      #ffe4e1 75%,
-      #ffe4e1
-    ),
-
-    repeating-linear-gradient(
-      45deg,
-      #ffe4e1 25%,
-      #ffffff 25%,
-      #ffffff 75%,
-      #ffe4e1 75%,
-      #ffe4e1
-    );
-
-  background-position:
-    0 0,
-    15px 15px;
-
-  background-size:
-    30px 30px;
-
-  width: 100%;
-  height: 100%;
-
-  overflow-y: auto;
-}
-
-
-/* ==========================================
-   🎁 結果セクション
-   ========================================== */
-
-.result-section {
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-}
-
-
-/* ==========================================
-   🏆 結果タイトル
-   ========================================== */
-
-.title-section {
-
-  height: 12%;
-
-  margin-top: 10px;
-}
-
-
-.result-title {
-
-  font-family:
-    'Cherry Bomb One',
-    'M PLUS Rounded 1c',
-    sans-serif;
-
-  font-size: 26px;
-
-  color: #ff1493;
-
-  text-shadow:
-    2px 2px 0 #ffffff,
-    -2px -2px 0 #ffffff,
-    2px -2px 0 #ffffff,
-    -2px 2px 0 #ffffff;
-
-  letter-spacing: 1px;
-
-  text-align: center;
-}
-
-
-/* ==========================================
-   💬 結果メッセージ
-   ========================================== */
-
-.text-section {
-
-  height: 22%;
-
-  padding: 0 15px;
-
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-
-  gap: 4px;
-}
-
-
-.result-main-text {
-
-  font-family:
-    'Cherry Bomb One',
-    'M PLUS Rounded 1c',
-    sans-serif;
-
-  font-size: 20px;
-
-  color: #ff1493;
-
-  text-align: center;
-
-  background: rgba(255, 255, 255, 0.9);
-
-  padding: 6px 15px;
-
-  border-radius: 12px;
-
-  border: 2px solid #ff69b4;
-
-  width: 90%;
-
-  margin: 0 auto;
-}
-
-
-.result-sub-text {
-
-  font-family:
-    'M PLUS Rounded 1c',
-    sans-serif;
-
-  font-weight: bold;
-
-  font-size: 15px;
-
-  color: #444;
-
-  text-align: center;
-
-  background: rgba(255, 255, 255, 0.9);
-
-  padding: 6px 15px;
-
-  border-radius: 12px;
-
-  border: 2px solid #ffb6c1;
-
-  width: 90%;
-
-  margin: 0 auto;
-}
-
-
-/* ==========================================
-   🧍 結果キャラクター
-   ========================================== */
-
-.chara-section {
-
-  height: 41%;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-}
-
-
-.result-chara {
-
-  width: 85%;
-  max-height: 75%;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0px 4px 8px rgba(0, 0, 0, 0.2)
-    );
-
-  transform: scale(0.85);
-}
-
-
-/* ==========================================
-   🔘 ボタン
-   ========================================== */
-
-.btn-section {
-
-  height: 25%;
-
-  padding-bottom: 20px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  gap: 12px;
-}
-
-
-/* ==========================================
-   🙈 非表示
-   ========================================== */
-
-.hidden {
-  display: none !important;
-}
-
-
-/* ==========================================
-   📱 スマートフォン対応
-   ========================================== */
-
-@media (max-width: 480px) {
-
-  .result-title {
-    font-size: 24px;
+  #start-node-container {
+    top: 20%;
   }
 
-
-  .result-main-text {
-    font-size: 19px;
+  #start-node-container .node-item {
+    width: 18%;
   }
 
-
-  .result-sub-text {
-    font-size: 14px;
+  #start-node-container .node-item img {
+    /* ★ スマホでも上のヘッドホンを70％サイズ */
+    transform: scale(0.875);
   }
-
-
-  .btn {
-    font-size: 15px;
-    padding: 13px 20px;
-  }
-
-
-  /*
-     📱 スマホでは結果文字をさらに優先
-  */
 
   #goal-node-container .goal-text-box {
-
     width: 17%;
-
     height: 16%;
 
-    font-size: clamp(
-      24px,
-      7vw,
-      32px
-    );
+    font-size: clamp(26px, 8vw, 38px);
 
     border-width: 3px;
   }
 
-
-  /*
-     🎧 動くヘッドホン
-  */
-
   .runner {
-
     width: 55px;
     height: 55px;
-
-    transform:
-      translate(-5px, -5px);
+    transform: translate(-5px, -5px);
   }
-
 }
