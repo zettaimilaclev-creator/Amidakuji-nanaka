@@ -128,19 +128,20 @@ body {
 
 
 /* ==========================================
-   🎧 上のヘッドホン（修正済み）
+   🎧 上のヘッドホン
+   ★ 少し大きく
    ========================================== */
 
 #start-node-container {
-  top: 20%;   /* ← さらに下へ。縦線の始まりにぴったり合う */
+  top: 20%;
 }
 
 #start-node-container .node-item {
-  width: 16%;   /* ← 間隔をさらに広げる */
+  width: 18%;
 }
 
 #start-node-container .node-item img {
-  transform: scale(1.35);   /* ← 大きさはそのままが最適 */
+  transform: scale(1.25);
 }
 
 
@@ -156,19 +157,21 @@ body {
 
 /* ==========================================
    🏁 結果文字
+   ★ スマホで見やすく大きく
+   ★ 縦書き
    ========================================== */
 
 #goal-node-container .goal-text-box {
 
-  width: 16%;
-  height: 15%;
+  width: 17%;
+  height: 16%;
 
   font-family:
     'Cherry Bomb One',
     'M PLUS Rounded 1c',
     sans-serif;
 
-  font-size: clamp(24px, 7vw, 34px);
+  font-size: clamp(26px, 8vw, 38px);
 
   font-weight: bold;
 
@@ -184,7 +187,7 @@ body {
 
   line-height: 1;
 
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
 
   border-radius: 14px;
 
@@ -540,6 +543,11 @@ body {
     padding: 13px 20px;
   }
 
+
+  /* ========================================
+     🏁 スマホの結果文字
+     ======================================== */
+
   #goal-node-container .goal-text-box {
 
     width: 17%;
@@ -547,13 +555,18 @@ body {
     height: 16%;
 
     font-size: clamp(
-      24px,
-      7vw,
-      32px
+      26px,
+      8vw,
+      38px
     );
 
     border-width: 3px;
   }
+
+
+  /* ========================================
+     🎧 動くヘッドホン
+     ======================================== */
 
   .runner {
 
