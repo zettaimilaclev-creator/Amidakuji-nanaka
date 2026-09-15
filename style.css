@@ -1,103 +1,132 @@
-/* ========================================
-   ななかちゃんのあみだくじ
-   style.css
-======================================== */
-
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: #fff0f5;
+}
+
+body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  overflow-x: hidden;
-}
-
-#game-container {
-  position: relative;
-  width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-#game-board {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  background-image: url('./amida-lines-1.png');
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-/* ========================================
-   スタート位置
-   ヘッドホン5個
-======================================== */
-
-#start-node-container {
-  position: absolute;
-
-  /* ヘッドホンを上へ */
-  top: 17%;
-
-  left: 0;
-  width: 100%;
-
+  background-color: #fff0f5;
+  color: #333;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-
-  z-index: 5;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-#start-node-container .node-item {
-  width: 18%;
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.btn {
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 14px 24px;
+  cursor: pointer;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.btn-share {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-reset {
+  background-color: #ff69b4;
+  color: #ffffff;
+}
+
+
+/* ==============================
+   🎮 ゲーム画面
+   ============================== */
+
+.amida-area {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.lines-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#start-node-container .node-item img {
-  /* ヘッドホンを現在の70％ */
-  width: 70%;
-  height: auto;
-
-  transform: none;
+.bg-line-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 
-/* ========================================
-   ゴール位置
-======================================== */
+/* 上下のノード */
 
-#goal-node-container {
+.node-row {
   position: absolute;
-
-  bottom: 8.5%;
-
   left: 0;
   width: 100%;
-
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 5%;
+  z-index: 2;
+}
 
+
+/* 🎧 ヘッドホン */
+
+#start-node-container {
+  /* ★ 元の15％から17％へ。少し上に移動 */
+  top: 17%;
+}
+
+#start-node-container .node-item {
+  width: 18%;
+}
+
+#start-node-container .node-item img {
+  /* ★ 元の1.1から70％の大きさへ */
+  transform: scale(0.77);
+}
+
+
+/* 🏁 ゴール */
+
+#goal-node-container {
+  bottom: 8.5%;
   z-index: 5;
 }
 
 #goal-node-container .goal-text-box {
-  width: 17%;
-  height: 16%;
+  width: 18%;
+  aspect-ratio: 1;
 
-  font-family: 'Cherry Bomb One', 'M PLUS Rounded 1c', sans-serif;
+  font-family:
+    'Cherry Bomb One',
+    'M PLUS Rounded 1c',
+    sans-serif;
 
-  font-size: clamp(26px, 8vw, 38px);
-
-  font-weight: bold;
-
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  font-size: 15px;
+  color: #ff1493;
 
   display: flex;
   justify-content: center;
@@ -105,65 +134,45 @@ body {
 
   text-align: center;
 
-  line-height: 1;
-
-  background: rgba(255, 255, 255, 0.88);
-
-  border-radius: 14px;
-
-  padding: 6px 3px;
-
-  box-sizing: border-box;
-
   text-shadow:
-    2px 2px 0 #fff,
-    -2px -2px 0 #fff,
-    2px -2px 0 #fff,
-    -2px 2px 0 #fff;
+    2px 2px 0px #fff,
+    -2px -2px 0px #fff,
+    2px -2px 0px #fff,
+    -2px 2px 0px #fff;
 
-  border: 3px solid currentColor;
+  line-height: 1.2;
 }
 
 
-/* ========================================
-   ゴール文字の色
-======================================== */
+/* キャラクターノード */
 
-#goal-node-container .goal-text-box:nth-child(1) {
-  color: #ff1493;
-  border-color: #ff69b4;
+.node-item {
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
 }
 
-#goal-node-container .goal-text-box:nth-child(2) {
-  color: #ff8c00;
-  border-color: #ffad42;
-}
+.node-item img {
+  width: 100%;
+  height: 100%;
 
-#goal-node-container .goal-text-box:nth-child(3) {
-  color: #20a84b;
-  border-color: #61c77b;
-}
+  object-fit: contain;
 
-#goal-node-container .goal-text-box:nth-child(4) {
-  color: #4169e1;
-  border-color: #7d9cff;
-}
-
-#goal-node-container .goal-text-box:nth-child(5) {
-  color: #9b59b6;
-  border-color: #c184d8;
+  filter:
+    drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 
-/* ========================================
-   動くヘッドホン
-======================================== */
+/* あみだくじを移動するキャラクター */
 
 .runner {
   position: absolute;
 
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
 
   background-size: contain;
   background-repeat: no-repeat;
@@ -172,52 +181,224 @@ body {
   z-index: 4;
 
   pointer-events: none;
-
-  transform: translate(-5px, -5px);
 }
 
 
-/* ========================================
-   スマートフォン表示
-======================================== */
+/* ==============================
+   🎁 結果画面
+   ============================== */
 
-@media (max-width: 600px) {
+.result-layout {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      #ffe4e1 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffe4e1 75%,
+      #ffe4e1
+    ),
+    repeating-linear-gradient(
+      45deg,
+      #ffe4e1 25%,
+      #ffffff 25%,
+      #ffffff 75%,
+      #ffe4e1 75%,
+      #ffe4e1
+    );
 
-  /* 上のヘッドホン */
+  background-position:
+    0 0,
+    15px 15px;
 
-  #start-node-container {
-    top: 17%;
+  background-size:
+    30px 30px;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+}
+
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+
+/* タイトル */
+
+.title-section {
+  height: 12%;
+  margin-top: 10px;
+}
+
+.result-title {
+  font-family:
+    'Cherry Bomb One',
+    'M PLUS Rounded 1c',
+    sans-serif;
+
+  font-size: 26px;
+
+  color: #ff1493;
+
+  text-shadow:
+    2px 2px 0px #fff,
+    -2px -2px 0px #fff,
+    2px -2px 0px #fff,
+    -2px 2px 0px #fff;
+
+  letter-spacing: 1px;
+
+  text-align: center;
+}
+
+
+/* 結果メッセージ */
+
+.text-section {
+  height: 22%;
+
+  padding: 0 15px;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.result-main-text {
+  font-family:
+    'Cherry Bomb One',
+    'M PLUS Rounded 1c',
+    sans-serif;
+
+  font-size: 20px;
+
+  color: #ff1493;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  padding: 6px 15px;
+
+  border-radius: 12px;
+
+  border: 2px solid #ff69b4;
+
+  width: 90%;
+
+  margin: 0 auto;
+}
+
+.result-sub-text {
+  font-family:
+    'M PLUS Rounded 1c',
+    sans-serif;
+
+  font-weight: bold;
+
+  font-size: 15px;
+
+  color: #444;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  padding: 6px 15px;
+
+  border-radius: 12px;
+
+  border: 2px solid #ffb6c1;
+
+  width: 90%;
+
+  margin: 0 auto;
+}
+
+
+/* 結果キャラクター */
+
+.chara-section {
+  height: 41%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.result-chara {
+  width: 85%;
+  max-height: 75%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+
+  transform: scale(0.85);
+}
+
+
+/* ボタン */
+
+.btn-section {
+  height: 25%;
+
+  padding-bottom: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+
+/* 非表示 */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ==============================
+   📱 スマートフォン対応
+   ============================== */
+
+@media (max-width: 480px) {
+
+  .result-title {
+    font-size: 24px;
   }
 
-  #start-node-container .node-item {
-    width: 18%;
+  .result-main-text {
+    font-size: 19px;
   }
 
-  #start-node-container .node-item img {
-    width: 70%;
-    height: auto;
-    transform: none;
+  .result-sub-text {
+    font-size: 14px;
   }
 
-
-  /* ゴール文字 */
-
-  #goal-node-container .goal-text-box {
-    width: 17%;
-    height: 16%;
-
-    font-size: clamp(26px, 8vw, 38px);
-
-    border-width: 3px;
+  .btn {
+    font-size: 15px;
+    padding: 13px 20px;
   }
 
-
-  /* 動くヘッドホン */
-
-  .runner {
-    width: 55px;
-    height: 55px;
-
-    transform: translate(-5px, -5px);
-  }
 }
