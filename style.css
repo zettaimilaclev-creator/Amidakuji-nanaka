@@ -1,26 +1,93 @@
-/* ==========================================
-   🎧 ヘッドホン
-   ・大きさ：約1.5倍
-   ・それぞれの線の始まりに配置
-   ========================================== */
+/* ========================================
+   ななかちゃんのあみだくじ
+   style.css
+======================================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff0f5;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  overflow-x: hidden;
+}
+
+#game-container {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+#game-board {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background-image: url('./amida-lines-1.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* ========================================
+   スタート位置
+   ヘッドホン5個
+======================================== */
 
 #start-node-container {
-  position: relative;
+  position: absolute;
+
+  top: 17%;
+
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  z-index: 5;
 }
 
 #start-node-container .node-item {
-  width: 14%;
+  width: 9%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #start-node-container .node-item img {
   width: 100%;
-  transform: scale(1.5);
+  height: auto;
+
+  transform: scale(1.1);
 }
 
 
-/* ==========================================
-   🏁 ゴール文字を大きく・縦書き・見やすく
-   ========================================== */
+/* ========================================
+   ゴール位置
+======================================== */
+
+#goal-node-container {
+  position: absolute;
+
+  bottom: 8.5%;
+
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  z-index: 5;
+}
+
+
+/* ========================================
+   🏁 ゴール文字
+======================================== */
 
 #goal-node-container .goal-text-box {
   width: 18%;
@@ -60,9 +127,9 @@
 }
 
 
-/* ==========================================
+/* ========================================
    🌈 結果ごとに色を変える
-   ========================================== */
+======================================== */
 
 #goal-node-container .goal-cho_atari {
   color: #ff1493;
@@ -90,19 +157,81 @@
 }
 
 
-/* ==========================================
-   📱 スマホ
-   ========================================== */
+/* ========================================
+   🎨 JS側でclassが付かない場合でも
+   5つのゴールを5色にする
+======================================== */
 
-@media (max-width: 480px) {
+#goal-node-container .goal-text-box:nth-child(1) {
+  color: #ff1493;
+  border: 3px solid #ff69b4;
+}
+
+#goal-node-container .goal-text-box:nth-child(2) {
+  color: #ff8c00;
+  border: 3px solid #ffb347;
+}
+
+#goal-node-container .goal-text-box:nth-child(3) {
+  color: #32a852;
+  border: 3px solid #65c978;
+}
+
+#goal-node-container .goal-text-box:nth-child(4) {
+  color: #4169e1;
+  border: 3px solid #7da2ff;
+}
+
+#goal-node-container .goal-text-box:nth-child(5) {
+  color: #9b59b6;
+  border: 3px solid #c084d8;
+}
+
+
+/* ========================================
+   動くヘッドホン
+======================================== */
+
+.runner {
+  position: absolute;
+
+  width: 55px;
+  height: 55px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 4;
+
+  pointer-events: none;
+
+  transform: translate(-5px, -5px);
+}
+
+
+/* ========================================
+   スマートフォン表示
+======================================== */
+
+@media (max-width: 600px) {
+
+  #start-node-container {
+    top: 17%;
+  }
 
   #start-node-container .node-item {
-    width: 14%;
+    width: 9%;
   }
 
   #start-node-container .node-item img {
-    transform: scale(1.5);
+    width: 100%;
+    height: auto;
+    transform: scale(1.1);
   }
+
+
+  /* ゴール文字 */
 
   #goal-node-container .goal-text-box {
     font-size: 21px;
@@ -110,4 +239,13 @@
     height: 10%;
   }
 
+
+  /* 動くヘッドホン */
+
+  .runner {
+    width: 55px;
+    height: 55px;
+
+    transform: translate(-5px, -5px);
+  }
 }
