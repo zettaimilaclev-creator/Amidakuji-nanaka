@@ -132,7 +132,7 @@ body {
    ========================================== */
 
 #start-node-container {
-  top: 7%;   /* ← 修正：さらに上へ */
+  top: 12%;   /* ← 位置を下げて縦線の始まりに揃える */
 }
 
 #start-node-container .node-item {
@@ -140,7 +140,7 @@ body {
 }
 
 #start-node-container .node-item img {
-  transform: scale(1.1);   /* ← 修正：サイズを大きく */
+  transform: scale(1.35);   /* ← 大きくして選択アイコンとして見やすく */
 }
 
 
