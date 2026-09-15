@@ -132,15 +132,15 @@ body {
    ========================================== */
 
 #start-node-container {
-  top: 12%;   /* ← 位置を下げて縦線の始まりに揃える */
+  top: 15%;   /* ← 縦線の始まりにぴったり合う高さ */
 }
 
 #start-node-container .node-item {
-  width: 9%;
+  width: 12%;   /* ← 横の間隔を広げる */
 }
 
 #start-node-container .node-item img {
-  transform: scale(1.35);   /* ← 大きくして選択アイコンとして見やすく */
+  transform: scale(1.35);   /* ← 大きさはそのまま */
 }
 
 
