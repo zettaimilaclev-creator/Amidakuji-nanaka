@@ -2,78 +2,40 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>あみだくじアプリ</title>
-
-  <!-- フォントの読み込み（CSSで指定されているもの） -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
-  
-  <!-- CSSファイルの読み込み -->
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今日の運勢あみだくじ！</title>
+  <!-- 必要なフォントの読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <div class="app-container">
-    
-    <!-- ==========================================
-         🎮 ゲーム画面
-         ========================================== -->
-    <div class="amida-area" id="amida-area">
-      
-      <div class="lines-wrapper">
-        <!-- ▼ 背景のあみだくじ線画像（※ファイル名はご自身の環境に合わせてください） -->
-        <img src="https://raw.githubusercontent.com/zettaimilaclev-creator/Amidakuji-nanaka/main/lines.png" alt="あみだの線" class="bg-line-img">
-      </div>
-
-      <!-- ▼ 上のヘッドホン置き場 (JavaScriptで自動追加されます) -->
-      <div class="node-row" id="start-node-container"></div>
-
-      <!-- ▼ あみだを動くヘッドホン (アニメーション用) -->
-      <div class="runner hidden" id="runner"></div>
-
-      <!-- ▼ 下の結果置き場 -->
-      <div class="node-row" id="goal-node-container">
-        <div class="goal-text-box">超あたり</div>
-        <div class="goal-text-box">大当り</div>
-        <div class="goal-text-box">あたり</div>
-        <div class="goal-text-box">はずれ</div>
-        <div class="goal-text-box">大はずれ</div>
-      </div>
-
-    </div>
-
-    <!-- ==========================================
-         🎁 結果画面 (最初は非表示)
-         ========================================== -->
-    <div class="result-layout hidden" id="result-screen">
-      <div class="result-section">
-        
-        <div class="title-section">
-          <div class="result-title">結果発表！</div>
-        </div>
-        
-        <div class="chara-section">
-          <img src="" alt="結果キャラクター" class="result-chara" id="result-image">
-        </div>
-        
-        <div class="text-section">
-          <div class="result-main-text" id="result-main-text">超あたり！</div>
-          <div class="result-sub-text" id="result-sub-text">おめでとうございます！</div>
-        </div>
-        
-        <div class="btn-section">
-          <button class="btn btn-share" id="btn-share">X(Twitter)でシェア</button>
-          <button class="btn btn-reset" onclick="location.reload()">もう一度遊ぶ</button>
-        </div>
-
+    <!-- 🎮 ゲーム画面 -->
+    <div id="game-screen" class="amida-area">
+      <div class="lines-wrapper" id="lines-wrapper">
+        <img id="bg-line-img" class="bg-line-img" src="" alt="あみだくじ背景">
+        <div id="start-node-container" class="node-row"></div>
+        <div id="goal-node-container" class="node-row"></div>
+        <div id="runner" class="runner hidden"></div>
       </div>
     </div>
 
+    <!-- 🎁 結果画面 -->
+    <div id="result-screen" class="result-layout hidden">
+      <div class="result-section title-section">
+        <h1 id="result-title" class="result-title"></h1>
+      </div>
+      <div class="result-section text-section">
+        <div id="result-main-text" class="result-main-text"></div>
+        <div id="result-sub-text" class="result-sub-text"></div>
+      </div>
+      <div class="result-section chara-section">
+        <img id="result-chara-img" class="result-chara" src="" alt="結果キャラ">
+      </div>
+      <div class="result-section btn-section">
+        <button id="share-btn" class="btn btn-share">結果をXでシェアする🕊</button>
+        <button id="reset-btn" class="btn btn-reset">もう一度遊ぶ</button>
+      </div>
+    </div>
   </div>
-
-  <!-- JavaScriptファイルの読み込み -->
-  <script src="script.js"></script>
 </body>
 </html>
