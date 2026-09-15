@@ -119,7 +119,7 @@ body {
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   padding: 0 5%;
 
@@ -129,15 +129,15 @@ body {
 
 /* ==========================================
    🎧 上のヘッドホン
-   ★ サイズを2倍に（27% → 54%）
+   ★ 今までの約半分
    ========================================== */
 
 #start-node-container {
-  top: 60%;
+  top: 15%;
 }
 
 #start-node-container .node-item {
-  width: 54%;
+  width: 9%;
 }
 
 #start-node-container .node-item img {
