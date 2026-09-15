@@ -3,7 +3,6 @@
    style.css
 ======================================== */
 
-/* 全体 */
 body {
   margin: 0;
   padding: 0;
@@ -29,36 +28,43 @@ body {
   background-repeat: no-repeat;
 }
 
+
 /* ========================================
    スタート位置
+   ヘッドホン5個
 ======================================== */
 
 #start-node-container {
   position: absolute;
-  top: 20%;
+
+  /* ★ ヘッドホンを上へ */
+  top: 17%;
+
   left: 0;
   width: 100%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
+
   z-index: 5;
 }
 
 #start-node-container .node-item {
   width: 18%;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #start-node-container .node-item img {
-  width: 100%;
+  /* ★ ヘッドホンを現在の70％ */
+  width: 70%;
   height: auto;
 
-  /* ★ ヘッドホンを現在の約70％に縮小 */
-  transform: scale(0.875);
-
-  transform-origin: center center;
+  /* 拡大縮小指定をリセット */
+  transform: none;
 }
 
 
@@ -68,12 +74,16 @@ body {
 
 #goal-node-container {
   position: absolute;
+
   bottom: 8.5%;
+
   left: 0;
   width: 100%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
+
   z-index: 5;
 }
 
@@ -82,7 +92,9 @@ body {
   height: 16%;
 
   font-family: 'Cherry Bomb One', 'M PLUS Rounded 1c', sans-serif;
+
   font-size: clamp(26px, 8vw, 38px);
+
   font-weight: bold;
 
   writing-mode: vertical-rl;
@@ -93,6 +105,7 @@ body {
   align-items: center;
 
   text-align: center;
+
   line-height: 1;
 
   background: rgba(255, 255, 255, 0.88);
@@ -100,6 +113,7 @@ body {
   border-radius: 14px;
 
   padding: 6px 3px;
+
   box-sizing: border-box;
 
   text-shadow:
@@ -149,6 +163,7 @@ body {
 .runner {
   position: absolute;
 
+  /* ★ 動くヘッドホンは55px */
   width: 55px;
   height: 55px;
 
@@ -157,9 +172,9 @@ body {
   background-position: center;
 
   z-index: 4;
+
   pointer-events: none;
 
-  /* JS側の位置計算を維持したまま中央を調整 */
   transform: translate(-5px, -5px);
 }
 
@@ -170,8 +185,13 @@ body {
 
 @media (max-width: 600px) {
 
+  /* -------------------------------
+     上のヘッドホン
+  ------------------------------- */
+
   #start-node-container {
-    top: 20%;
+    /* ★ スマホでも上へ */
+    top: 17%;
   }
 
   #start-node-container .node-item {
@@ -179,9 +199,16 @@ body {
   }
 
   #start-node-container .node-item img {
-    /* ★ スマホでも上のヘッドホンを70％サイズ */
-    transform: scale(0.875);
+    /* ★ 現在の70％ */
+    width: 70%;
+    height: auto;
+    transform: none;
   }
+
+
+  /* -------------------------------
+     ゴール文字
+  ------------------------------- */
 
   #goal-node-container .goal-text-box {
     width: 17%;
@@ -192,9 +219,15 @@ body {
     border-width: 3px;
   }
 
+
+  /* -------------------------------
+     動くヘッドホン
+  ------------------------------- */
+
   .runner {
     width: 55px;
     height: 55px;
+
     transform: translate(-5px, -5px);
   }
 }
