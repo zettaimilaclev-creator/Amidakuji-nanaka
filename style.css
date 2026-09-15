@@ -1,9 +1,105 @@
-/* ==========================================
-   🎧 ヘッドホンを半分くらいの大きさに
-   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background-color: #fff0f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 14px 24px;
+  cursor: pointer;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.btn-share {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-reset {
+  background-color: #ff69b4;
+  color: #ffffff;
+}
+
+
+/* ==============================
+   🎮 ゲーム画面
+   ============================== */
+
+.amida-area {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.lines-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-line-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* 上下のノード */
+
+.node-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 5%;
+  z-index: 2;
+}
+
+
+/* 🎧 ヘッドホン */
+
+#start-node-container {
+  top: 15%;
+}
 
 #start-node-container .node-item {
-  width: 9%;
+  width: 18%;
 }
 
 #start-node-container .node-item img {
@@ -11,37 +107,30 @@
 }
 
 
-/* ==========================================
-   🏁 ゴール文字を大きく・縦書き・見やすく
-   ========================================== */
+/* 🏁 ゴール */
+
+#goal-node-container {
+  bottom: 8.5%;
+  z-index: 5;
+}
 
 #goal-node-container .goal-text-box {
   width: 18%;
-  height: 9%;
-  aspect-ratio: auto;
+  aspect-ratio: 1;
 
   font-family:
     'Cherry Bomb One',
     'M PLUS Rounded 1c',
     sans-serif;
 
-  font-size: clamp(20px, 4.5vw, 30px);
-  font-weight: bold;
-
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  font-size: 15px;
+  color: #ff1493;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   text-align: center;
-  line-height: 1.05;
-
-  background: rgba(255, 255, 255, 0.78);
-  border-radius: 12px;
-
-  padding: 4px 3px;
 
   text-shadow:
     2px 2px 0px #fff,
@@ -49,51 +138,267 @@
     2px -2px 0px #fff,
     -2px 2px 0px #fff;
 
-  box-sizing: border-box;
+  line-height: 1.2;
 }
 
 
-/* ==========================================
-   🌈 結果ごとに色を変える
-   ========================================== */
+/* キャラクターノード */
 
-#goal-node-container .goal-cho_atari {
+.node-item {
+  aspect-ratio: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.node-item img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+
+/* あみだくじを移動するキャラクター */
+
+.runner {
+  position: absolute;
+
+  width: 45px;
+  height: 45px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+
+/* ==============================
+   🎁 結果画面
+   ============================== */
+
+.result-layout {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      #ffe4e1 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffe4e1 75%,
+      #ffe4e1
+    ),
+    repeating-linear-gradient(
+      45deg,
+      #ffe4e1 25%,
+      #ffffff 25%,
+      #ffffff 75%,
+      #ffe4e1 75%,
+      #ffe4e1
+    );
+
+  background-position:
+    0 0,
+    15px 15px;
+
+  background-size:
+    30px 30px;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+}
+
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+
+/* タイトル */
+
+.title-section {
+  height: 12%;
+  margin-top: 10px;
+}
+
+.result-title {
+  font-family:
+    'Cherry Bomb One',
+    'M PLUS Rounded 1c',
+    sans-serif;
+
+  font-size: 26px;
+
   color: #ff1493;
-  border: 3px solid #ff69b4;
-}
 
-#goal-node-container .goal-ooatari {
-  color: #ff8c00;
-  border: 3px solid #ffb347;
-}
+  text-shadow:
+    2px 2px 0px #fff,
+    -2px -2px 0px #fff,
+    2px -2px 0px #fff,
+    -2px 2px 0px #fff;
 
-#goal-node-container .goal-atari {
-  color: #32a852;
-  border: 3px solid #65c978;
-}
+  letter-spacing: 1px;
 
-#goal-node-container .goal-hazure {
-  color: #4169e1;
-  border: 3px solid #7da2ff;
-}
-
-#goal-node-container .goal-dai_hazure {
-  color: #9b59b6;
-  border: 3px solid #c084d8;
+  text-align: center;
 }
 
 
-/* スマホでも読みやすく */
+/* 結果メッセージ */
+
+.text-section {
+  height: 22%;
+
+  padding: 0 15px;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.result-main-text {
+  font-family:
+    'Cherry Bomb One',
+    'M PLUS Rounded 1c',
+    sans-serif;
+
+  font-size: 20px;
+
+  color: #ff1493;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  padding: 6px 15px;
+
+  border-radius: 12px;
+
+  border: 2px solid #ff69b4;
+
+  width: 90%;
+
+  margin: 0 auto;
+}
+
+.result-sub-text {
+  font-family:
+    'M PLUS Rounded 1c',
+    sans-serif;
+
+  font-weight: bold;
+
+  font-size: 15px;
+
+  color: #444;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  padding: 6px 15px;
+
+  border-radius: 12px;
+
+  border: 2px solid #ffb6c1;
+
+  width: 90%;
+
+  margin: 0 auto;
+}
+
+
+/* 結果キャラクター */
+
+.chara-section {
+  height: 41%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.result-chara {
+  width: 85%;
+
+  max-height: 75%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+
+  transform: scale(0.85);
+}
+
+
+/* ボタン */
+
+.btn-section {
+  height: 25%;
+
+  padding-bottom: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+
+/* 非表示 */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ==============================
+   📱 スマートフォン対応
+   ============================== */
+
 @media (max-width: 480px) {
 
-  #start-node-container .node-item {
-    width: 9%;
+  .result-title {
+    font-size: 24px;
   }
 
-  #goal-node-container .goal-text-box {
-    font-size: 21px;
-    width: 18%;
-    height: 10%;
+  .result-main-text {
+    font-size: 19px;
+  }
+
+  .result-sub-text {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 13px 20px;
   }
 
 }
