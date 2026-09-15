@@ -37,7 +37,7 @@ body {
 #start-node-container {
   position: absolute;
 
-  /* ★ ヘッドホンを上へ */
+  /* ヘッドホンを上へ */
   top: 17%;
 
   left: 0;
@@ -59,11 +59,10 @@ body {
 }
 
 #start-node-container .node-item img {
-  /* ★ ヘッドホンを現在の70％ */
+  /* ヘッドホンを現在の70％ */
   width: 70%;
   height: auto;
 
-  /* 拡大縮小指定をリセット */
   transform: none;
 }
 
@@ -163,7 +162,6 @@ body {
 .runner {
   position: absolute;
 
-  /* ★ 動くヘッドホンは55px */
   width: 55px;
   height: 55px;
 
@@ -185,12 +183,9 @@ body {
 
 @media (max-width: 600px) {
 
-  /* -------------------------------
-     上のヘッドホン
-  ------------------------------- */
+  /* 上のヘッドホン */
 
   #start-node-container {
-    /* ★ スマホでも上へ */
     top: 17%;
   }
 
@@ -199,16 +194,13 @@ body {
   }
 
   #start-node-container .node-item img {
-    /* ★ 現在の70％ */
     width: 70%;
     height: auto;
     transform: none;
   }
 
 
-  /* -------------------------------
-     ゴール文字
-  ------------------------------- */
+  /* ゴール文字 */
 
   #goal-node-container .goal-text-box {
     width: 17%;
@@ -220,9 +212,7 @@ body {
   }
 
 
-  /* -------------------------------
-     動くヘッドホン
-  ------------------------------- */
+  /* 動くヘッドホン */
 
   .runner {
     width: 55px;
