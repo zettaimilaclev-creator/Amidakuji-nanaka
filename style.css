@@ -128,12 +128,11 @@ body {
 
 
 /* ==========================================
-   🎧 上のヘッドホン
-   ★ 今までの約半分
+   🎧 上のヘッドホン（修正済み）
    ========================================== */
 
 #start-node-container {
-  top: 15%;
+  top: 7%;   /* ← 修正：さらに上へ */
 }
 
 #start-node-container .node-item {
@@ -141,7 +140,7 @@ body {
 }
 
 #start-node-container .node-item img {
-  transform: scale(1.1);
+  transform: scale(1.1);   /* ← 修正：サイズを大きく */
 }
 
 
@@ -157,8 +156,6 @@ body {
 
 /* ==========================================
    🏁 結果文字
-   ★ スマホ用に大きく
-   ★ 縦書き
    ========================================== */
 
 #goal-node-container .goal-text-box {
@@ -171,16 +168,10 @@ body {
     'M PLUS Rounded 1c',
     sans-serif;
 
-  /*
-     スマホでもしっかり読める大きさ
-  */
   font-size: clamp(24px, 7vw, 34px);
 
   font-weight: bold;
 
-  /*
-     縦書き
-  */
   writing-mode: vertical-rl;
   text-orientation: upright;
 
@@ -193,9 +184,6 @@ body {
 
   line-height: 1;
 
-  /*
-     白い背景で文字を見やすく
-  */
   background: rgba(255, 255, 255, 0.88);
 
   border-radius: 14px;
@@ -204,18 +192,12 @@ body {
 
   box-sizing: border-box;
 
-  /*
-     白い縁取り
-  */
   text-shadow:
     2px 2px 0 #ffffff,
     -2px -2px 0 #ffffff,
     2px -2px 0 #ffffff,
     -2px 2px 0 #ffffff;
 
-  /*
-     色が変わるようにする
-  */
   border: 3px solid currentColor;
 }
 
@@ -224,52 +206,33 @@ body {
    🌈 5つの結果をそれぞれ色違い
    ========================================== */
 
-/* ① 超あたり */
 #goal-node-container
 .goal-text-box:nth-child(1) {
-
   color: #ff1493;
-
   border-color: #ff69b4;
 }
 
-
-/* ② 大当たり */
 #goal-node-container
 .goal-text-box:nth-child(2) {
-
   color: #ff8c00;
-
   border-color: #ffad42;
 }
 
-
-/* ③ あたり */
 #goal-node-container
 .goal-text-box:nth-child(3) {
-
   color: #20a84b;
-
   border-color: #61c77b;
 }
 
-
-/* ④ はずれ */
 #goal-node-container
 .goal-text-box:nth-child(4) {
-
   color: #4169e1;
-
   border-color: #7d9cff;
 }
 
-
-/* ⑤ 大はずれ */
 #goal-node-container
 .goal-text-box:nth-child(5) {
-
   color: #9b59b6;
-
   border-color: #c184d8;
 }
 
@@ -306,7 +269,6 @@ body {
 
 /* ==========================================
    🎧 あみだを動くヘッドホン
-   ★ 45px → 55px
    ========================================== */
 
 .runner {
@@ -324,10 +286,6 @@ body {
 
   pointer-events: none;
 
-  /*
-     元の位置計算が45px基準なので、
-     55pxにした分だけ中央に補正
-  */
   transform: translate(-5px, -5px);
 }
 
@@ -569,26 +527,18 @@ body {
     font-size: 24px;
   }
 
-
   .result-main-text {
     font-size: 19px;
   }
-
 
   .result-sub-text {
     font-size: 14px;
   }
 
-
   .btn {
     font-size: 15px;
     padding: 13px 20px;
   }
-
-
-  /*
-     📱 スマホでは結果文字をさらに優先
-  */
 
   #goal-node-container .goal-text-box {
 
@@ -604,11 +554,6 @@ body {
 
     border-width: 3px;
   }
-
-
-  /*
-     🎧 動くヘッドホン
-  */
 
   .runner {
 
