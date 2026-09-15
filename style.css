@@ -132,15 +132,15 @@ body {
    ========================================== */
 
 #start-node-container {
-  top: 15%;   /* ← 縦線の始まりにぴったり合う高さ */
+  top: 20%;   /* ← さらに下へ。縦線の始まりにぴったり合う */
 }
 
 #start-node-container .node-item {
-  width: 12%;   /* ← 横の間隔を広げる */
+  width: 16%;   /* ← 間隔をさらに広げる */
 }
 
 #start-node-container .node-item img {
-  transform: scale(1.35);   /* ← 大きさはそのまま */
+  transform: scale(1.35);   /* ← 大きさはそのままが最適 */
 }
 
 
